@@ -1,4 +1,5 @@
 import { BookmarkIcon, InfoIcon } from "./icons"
+import { ImageWithFallback } from "./index"
 
 function MediaCard({ media }) {
     function onAddToWatchlistClick() {
@@ -6,14 +7,22 @@ function MediaCard({ media }) {
     }
 
     return (
-        <div className="relative rounded-xl overflow-hidden shadow-lg group">
-            <img src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`} alt={media.title} className="w-full h-full object-cover" />
+        <div className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3]">
+            <ImageWithFallback
+                src={
+                    media.poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${media.poster_path}`
+                        : null
+                }
+                alt={media.title}
+                className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-gray-800/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-3">
                 <div className="flex gap-2 justify-end">
                     <button title="More Info" className="grid place-items-center bg-blue-500/40 hover:bg-blue-600/50 text-white w-9 h-8 rounded-lg text-sm">
                         <InfoIcon className="w-4 h-4" />
                     </button>
-                    <button onClick={onAddToWatchlistClick} title="Add to Watchlist" className="grid place-items-center bg-yellow-500/40 hover:bg-yellow-500/50 text-white w-9 h-8 rounded-lg text-sm">
+                    <button onClick={onAddToWatchlistClick} title="Add to list" className="grid place-items-center bg-yellow-500/40 hover:bg-yellow-500/50 text-white w-9 h-8 rounded-lg text-sm">
                         <BookmarkIcon className="w-4 h-4" />
                     </button>
                 </div>

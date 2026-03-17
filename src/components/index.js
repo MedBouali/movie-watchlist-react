@@ -5,5 +5,6 @@ export { default as Navbar } from "./Navbar"
 export { default as Pagination } from "./Pagination"
 export { default as SearchInput } from "./SearchInput"
 export { default as EmptyState } from "./EmptyState"
+export { default as ImageWithFallback } from "./ImageWithFallback"
 
 
