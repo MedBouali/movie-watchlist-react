@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import MainLayout from "./layout/MainLayout"
 import Home from "./pages/Home"
-import Movies from "./pages/Movies"
+import Movies from "./pages/movies"
 import Watchlist from "./pages/Watchlist"
 import Shows from "./pages/Shows"
 

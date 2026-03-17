@@ -1,5 +1,5 @@
 import { useState } from "react"
-import MenuIcon from "./icons/MenuIcon"
+import { MenuIcon } from "./icons"
 import { Link } from "react-router-dom"
 
 function Navbar() {
