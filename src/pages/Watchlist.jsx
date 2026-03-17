@@ -1,6 +1,6 @@
 function Watchlist() {
     return (
-        <div></div>
+        <div>Watchlist</div>
 
     )
 }

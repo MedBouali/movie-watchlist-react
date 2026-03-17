@@ -1,10 +1,19 @@
-import Movies from "./pages/Movies"
+import { Routes, Route } from "react-router-dom"
 import MainLayout from "./layout/MainLayout"
+import Home from "./pages/Home"
+import Movies from "./pages/Movies"
+import Watchlist from "./pages/Watchlist"
+import Shows from "./pages/Shows"
 
 function App() {
   return (
     <MainLayout>
-      <Movies />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/tv-shows" element={<Shows />} />
+        <Route path="/watchlist" element={<Watchlist />} />
+      </Routes>
     </MainLayout>
   )
 }
