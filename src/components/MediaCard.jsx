@@ -1,5 +1,5 @@
 import { BookmarkIcon, InfoIcon } from "./icons"
-import { ImageWithFallback } from "./index"
+import ImageWithFallback from "./ImageWithFallback"
 
 function MediaCard({ media }) {
     function onAddToWatchlistClick() {
