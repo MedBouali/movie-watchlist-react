@@ -1,4 +1,4 @@
-import { MediaCard, SearchInput, Pagination } from "../../components"
+import { MediaCard, SearchInput, Pagination, EmptyState } from "../../components"
 import useMovies from "./hooks/useMovies"
 
 function Movies() {
@@ -30,7 +30,18 @@ function Movies() {
                     )}
 
                     {isLoading ? (
-                        <div className="flex justify-center font-medium">Loading...</div>
+                        <div className="flex flex-col items-center justify-center py-16 text-center">
+                            Loading...
+                        </div>
+                    ) : movies.length === 0 ? (
+                        <EmptyState
+                            title="No movies found"
+                            description={
+                                searchQuery
+                                    ? `No results for "${searchQuery}"`
+                                    : "No movies available right now."
+                            }
+                        />
                     ) : (
                         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 py-6">
@@ -38,7 +49,7 @@ function Movies() {
                                     return <MediaCard key={media.id} media={media} />
                                 })}
                             </div>
-                            
+
                             {!isLoading && movies.length > 0 && (
                                 <Pagination
                                     currentPage={currentPage}

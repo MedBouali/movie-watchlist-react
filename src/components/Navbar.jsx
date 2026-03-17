@@ -20,7 +20,7 @@ function Navbar() {
                     <Link to="/tv-shows" className="hover:text-gray-900 border-b-2 border-transparent hover:border-red-700 pb-1 transition">TV
                         Shows</Link>
                     <Link to="/watchlist"
-                        className="hover:text-gray-900 border-b-2 border-transparent hover:border-red-700 pb-1 transition">Watchlist</Link>
+                        className="hover:text-gray-900 border-b-2 border-transparent hover:border-red-700 pb-1 transition">Watch List</Link>
                 </nav>
 
                 <button onClick={() => setIsOpen(!isOpen)} id="menuBtn" className="md:hidden text-gray-600 cursor-pointer">
@@ -29,11 +29,11 @@ function Navbar() {
             </div>
 
             <div id="mobileMenu"
-                className={`${isOpen ? "block" : "hidden"} md:hidden px-6 p-4 bg-gray-50 border-b border-gray-200 text-gray-600 font-medium space-y-3`}>
+                className={`${isOpen ? "block" : "hidden"} md:hidden px-6 p-4 border-b border-gray-300 text-gray-600 font-medium space-y-3`}>
                 <Link to="/" className="block hover:text-red-700">Home</Link>
                 <Link to="/movies" className="block hover:text-red-700">Movies</Link>
                 <Link to="/tv-shows" className="block hover:text-red-700">TV Shows</Link>
-                <Link to="/watchlist" className="block hover:text-red-700">Watchlist</Link>
+                <Link to="/watchlist" className="block hover:text-red-700">Watch List</Link>
             </div>
         </header>
     )

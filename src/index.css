@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-    background-color: #f9fafb;
+    background: linear-gradient(to bottom, #e9ebee 5%, #f9fafb 95%);
     font-family: "Saira", sans-serif;
 }
