@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { getPopularMovies, searchMovies } from "../../../services/movieService"
 
 export default function useMovies(initialQuery = "") {
@@ -9,7 +9,7 @@ export default function useMovies(initialQuery = "") {
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
 
-    const fetchMovies = async (query = searchQuery, page = 1) => {
+    const fetchMovies = useCallback(async (query, page = 1) => {
         setIsLoading(true)
         try {
             const data = !query.trim()
@@ -25,11 +25,11 @@ export default function useMovies(initialQuery = "") {
         } finally {
             setIsLoading(false)
         }
-    }
+    }, [])
 
     useEffect(() => {
-        fetchMovies()
-    }, [])
+        fetchMovies("")
+    }, [fetchMovies])
 
     const handleSearch = (e) => {
         e.preventDefault()
