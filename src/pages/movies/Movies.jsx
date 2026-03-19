@@ -5,6 +5,7 @@ function Movies() {
     const {
         searchQuery,
         setSearchQuery,
+        submittedQuery,
         movies,
         error,
         isLoading,
@@ -17,6 +18,8 @@ function Movies() {
         showFilters
     } = useMovies()
 
+    const hasActiveFilters = filters.genre || filters.year || filters.rating
+
     return (
         <>
             <SearchInput
@@ -27,9 +30,22 @@ function Movies() {
             <section id="movies" className="pt-12">
                 <div className="container mx-auto px-6 w-full my-4">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-xl font-semibold mb-2">Popular Movies</h3>
+                        <h1 className="text-2xl font-semibold mb-2">
+                            {submittedQuery ? (
+                                <>
+                                    Search results for{" "}
+                                    <span className="text-primary">"{submittedQuery}"</span>
+                                </>
+                            ) : hasActiveFilters ? (
+                                <>
+                                    Filter results
+                                </>
+                            ) : (
+                                "Popular Movies"
+                            )}
+                        </h1>
                     </div>
-                    
+
                     <MovieFilters filters={filters} setFilters={setFilters} showFilters={showFilters} />
 
                     {error && (
@@ -51,7 +67,7 @@ function Movies() {
                         />
                     ) : (
                         <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 py-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 py-4">
                                 {movies.map((media) => {
                                     return <MediaCard key={media.id} media={media} />
                                 })}

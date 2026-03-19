@@ -30,7 +30,7 @@ export default function MovieFilters({ filters, setFilters, showFilters }) {
     ]
 
     return (
-        <div className="flex justify-end flex-wrap gap-2">
+        <div className="flex justify-end flex-nowrap gap-2">
             <Dropdown
                 label="All Genres"
                 options={genreOptions}

@@ -67,6 +67,7 @@ export default function useMovies(initialQuery = "") {
     return {
         searchQuery,
         setSearchQuery,
+        submittedQuery,
         movies,
         error,
         isLoading,

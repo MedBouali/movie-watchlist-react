@@ -22,14 +22,14 @@ function Dropdown({ label, options, selected, onSelect }) {
         <div ref={dropdownRef} className="relative inline-block text-left">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="group inline-flex justify-between items-center w-40 bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+                className="group inline-flex justify-between items-center bg-[#222028] border border-[#222028] rounded-lg px-4 py-2 text-sm font-medium shadow-sm hover:bg-[#222028]/90 focus:outline-none focus:ring-2 focus:ring-primary transition w-full"
             >
                 {selected ? selected.label : label}
-                <DropdownIcon className="w-4 h-4 ml-2 text-gray-500 group-focus:text-red-700 transition" />
+                <DropdownIcon className="w-4 h-4 ml-2 text-gray-500 group-focus:text-primary transition" />
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                <div className="absolute right-0 mt-2 bg-[#222028] border border-[#222028] rounded-md shadow-lg z-10">
                     {options.map((option) => (
                         <button
                             key={option.value}
@@ -37,7 +37,7 @@ function Dropdown({ label, options, selected, onSelect }) {
                                 onSelect(option)
                                 setIsOpen(false)
                             }}
-                            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
+                            className="block w-full text-left px-4 py-2 text-sm hover:text-primary transition"
                         >
                             {option.label}
                         </button>

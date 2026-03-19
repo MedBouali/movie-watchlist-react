@@ -37,7 +37,7 @@ function Pagination({ currentPage, totalPages, onPageChange, maxVisible = 5 }) {
             <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-3 py-2 rounded-lg bg-gray-300 disabled:opacity-50"
+                className="px-3 py-2 rounded-lg bg-[#222028] disabled:opacity-50 hover:bg-[#222028]/90 hover:text-primary transition"
             >
                 <PreviousIcon className="w-4 h-4" />
             </button>
@@ -51,10 +51,10 @@ function Pagination({ currentPage, totalPages, onPageChange, maxVisible = 5 }) {
                     <button
                         key={page}
                         onClick={() => onPageChange(page)}
-                        className={`px-4 py-2 text-xs rounded-lg ${
+                        className={`px-4 py-2 text-xs font-medium rounded-lg ${
                             page === currentPage
-                                ? "bg-red-600 text-white"
-                                : "bg-gray-300 hover:bg-gray-400"
+                                ? "bg-primary text-[#222028]"
+                                : "bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
                         }`}
                     >
                         {page}
@@ -65,7 +65,7 @@ function Pagination({ currentPage, totalPages, onPageChange, maxVisible = 5 }) {
             <button
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-2 rounded-lg bg-gray-300 disabled:opacity-50"
+                className="px-3 py-2 rounded-lg bg-[#222028] disabled:opacity-50 hover:bg-[#222028]/90 hover:text-primary transition"
             >
                 <NextIcon className="w-4 h-4" />
             </button>
