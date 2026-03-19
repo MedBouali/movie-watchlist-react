@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
-import { 
+import {
     getPopularMovies,
     searchMovies,
     discoverMovies,
@@ -32,9 +32,9 @@ export default function useMedia(type = "movie", initialQuery = "") {
             let data
 
             if (query.trim()) {
-                data = type === "movie" 
-                        ? await searchMovies(query, page)
-                        : await searchTVShows(query, page)
+                data = type === "movie"
+                    ? await searchMovies(query, page)
+                    : await searchTVShows(query, page)
             } else if (filters.genre || filters.year || filters.rating) {
                 data = type === "movie"
                     ? await discoverMovies(filters, page)
@@ -76,6 +76,13 @@ export default function useMedia(type = "movie", initialQuery = "") {
         fetchMedia(trimmedQuery, 1)
     }
 
+    const handleClear = () => {
+        setSearchQuery("")
+        fetchMedia("", 1)
+        setSubmittedQuery("")
+        setCurrentPage(1)
+    }
+
     const handlePageChange = (newPage) => {
         const cappedPage = Math.max(1, Math.min(newPage, Math.min(totalPages, 500)))
         setCurrentPage(cappedPage)
@@ -92,6 +99,7 @@ export default function useMedia(type = "movie", initialQuery = "") {
         currentPage,
         totalPages,
         handleSearch,
+        handleClear,
         handlePageChange,
         filters,
         setFilters,

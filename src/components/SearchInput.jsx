@@ -1,6 +1,6 @@
 import { SearchIcon } from "./icons"
 
-function SearchInput({ searchQuery, setSearchQuery, handleSearch }) {
+function SearchInput({ searchQuery, setSearchQuery, handleSearch, handleClear }) {
     return (
         <form
             onSubmit={handleSearch}
@@ -17,6 +17,16 @@ function SearchInput({ searchQuery, setSearchQuery, handleSearch }) {
             >
                 Search
             </button>
+
+            {searchQuery && (
+                <button
+                    type="button"
+                    onClick={handleClear}
+                    className="absolute right-[28px] top-1/2 -translate-y-1/2 bg-red-500 hover:bg-red-600 text-white font-normal px-[23px] h-[36px] rounded-md text-[0.85rem] transition"
+                >
+                    Clear
+                </button>
+            )}
         </form>
     )
 }

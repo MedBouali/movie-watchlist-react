@@ -12,6 +12,7 @@ export default function MediaListPage({ type = "movie", title }) {
         currentPage,
         totalPages,
         handleSearch,
+        handleClear,
         handlePageChange,
         filters,
         setFilters,
@@ -36,6 +37,7 @@ export default function MediaListPage({ type = "movie", title }) {
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 handleSearch={handleSearch}
+                handleClear={handleClear}
             />
 
             <section className="pt-12" id={type === "movie" ? "movies" : "tv-shows"}>
