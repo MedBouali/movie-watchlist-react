@@ -6,7 +6,7 @@ function SearchInput({ searchQuery, setSearchQuery, handleSearch }) {
             onSubmit={handleSearch}
             className="relative flex gap-3 max-w-xl mx-auto mt-14 px-6"
         >
-            <input type="text" placeholder="Search for movies..."
+            <input type="text" placeholder="Search..."
                 className="w-full bg-[#222028] border-2 border-[#222028] text-[15px] placeholder-gray-400 rounded-lg h-[45.5px] pl-11 pr-[95px] outline-none peer focus:border-2 focus:border-primary transition"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)} />

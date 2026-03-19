@@ -3,6 +3,9 @@ import { BookmarkIcon, InfoIcon } from "./icons"
 import ImageWithFallback from "./ImageWithFallback"
 
 function MediaCard({ media }) {
+    const title = media.title || media.name
+    const year = (media.release_date || media.first_air_date)?.split("-")[0]
+
     function onAddToWatchlistClick() {
         alert("clicked")
     }
@@ -39,12 +42,10 @@ function MediaCard({ media }) {
             </div>
             <div
                 className="absolute bottom-0 left-0 w-full p-3 bg-linear-to-t from-gray-900/80 to-transparent">
-                <p className="text-[11px] text-white">
-                    {media.release_date?.split("-")[0]}
-                </p>
-                <h3 className="text-sm font-semibold text-white">{media.title}</h3>
+                <p className="text-[11px] text-white">{year}</p>
+                <h3 className="text-sm font-semibold text-white">{title}</h3>
                 {mediaGenres && (
-                    <p className="text-xs text-white">
+                    <p className="text-xs text-primary">
                         {mediaGenres}
                     </p>
                 )}

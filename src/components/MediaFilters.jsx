@@ -1,7 +1,7 @@
 import { genres } from "../utils/genres"
 import Dropdown from "./Dropdown"
 
-export default function MovieFilters({ filters, setFilters, showFilters }) {
+export default function MediaFilters({ filters, setFilters, showFilters }) {
     if (!showFilters) return null
 
     const genreOptions = [
