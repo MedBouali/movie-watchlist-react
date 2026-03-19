@@ -38,6 +38,7 @@ export default function MediaListPage({ type = "movie", title }) {
                 setSearchQuery={setSearchQuery}
                 handleSearch={handleSearch}
                 handleClear={handleClear}
+                submittedQuery={submittedQuery}
             />
 
             <section className="pt-12" id={type === "movie" ? "movies" : "tv-shows"}>

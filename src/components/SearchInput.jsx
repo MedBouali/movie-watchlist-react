@@ -1,6 +1,12 @@
 import { SearchIcon } from "./icons"
 
-function SearchInput({ searchQuery, setSearchQuery, handleSearch, handleClear }) {
+function SearchInput({
+    searchQuery,
+    setSearchQuery,
+    handleSearch,
+    handleClear,
+    submittedQuery
+}) {
     return (
         <form
             onSubmit={handleSearch}
@@ -18,7 +24,7 @@ function SearchInput({ searchQuery, setSearchQuery, handleSearch, handleClear })
                 Search
             </button>
 
-            {searchQuery && (
+            {submittedQuery && (
                 <button
                     type="button"
                     onClick={handleClear}

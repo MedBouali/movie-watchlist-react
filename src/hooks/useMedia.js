@@ -78,9 +78,9 @@ export default function useMedia(type = "movie", initialQuery = "") {
 
     const handleClear = () => {
         setSearchQuery("")
-        fetchMedia("", 1)
         setSubmittedQuery("")
         setCurrentPage(1)
+        fetchMedia("", 1)
     }
 
     const handlePageChange = (newPage) => {
