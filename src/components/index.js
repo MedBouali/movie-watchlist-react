@@ -6,5 +6,7 @@ export { default as Pagination } from "./Pagination"
 export { default as SearchInput } from "./SearchInput"
 export { default as EmptyState } from "./EmptyState"
 export { default as ImageWithFallback } from "./ImageWithFallback"
+export { default as MovieFilters } from "./MovieFilters"
+export { default as Dropdown } from "./Dropdown"
 
 

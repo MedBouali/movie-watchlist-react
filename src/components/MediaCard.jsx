@@ -1,3 +1,4 @@
+import { genres } from "../utils/genres"
 import { BookmarkIcon, InfoIcon } from "./icons"
 import ImageWithFallback from "./ImageWithFallback"
 
@@ -5,6 +6,11 @@ function MediaCard({ media }) {
     function onAddToWatchlistClick() {
         alert("clicked")
     }
+
+    const mediaGenres = media.genre_ids
+        ?.map((id) => genres.find((g) => g.id === id)?.name)
+        .filter(Boolean)
+        .join(", ")
 
     return (
         <div className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3]">
@@ -27,7 +33,7 @@ function MediaCard({ media }) {
                     </button>
                 </div>
 
-                <p className="text-white text-xs line-clamp-4 mb-10">{media.overview}</p>
+                <p className="text-white text-xs line-clamp-4 mb-14">{media.overview}</p>
             </div>
             <div
                 className="absolute bottom-0 left-0 w-full p-3 bg-linear-to-t from-gray-900/80 to-transparent">
@@ -35,6 +41,11 @@ function MediaCard({ media }) {
                 <p className="text-xs text-white">
                     {media.release_date?.split("-")[0]} • <span className="text-yellow-500">{media.vote_average.toFixed(1)}</span> IMDb
                 </p>
+                {mediaGenres && (
+                    <p className="text-xs text-white">
+                        {mediaGenres}
+                    </p>
+                )}
             </div>
         </div>
     )

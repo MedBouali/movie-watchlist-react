@@ -1,4 +1,4 @@
-import { MediaCard, SearchInput, Pagination, EmptyState } from "../../components"
+import { MediaCard, SearchInput, Pagination, EmptyState, MovieFilters } from "../../components"
 import useMovies from "./hooks/useMovies"
 
 function Movies() {
@@ -11,7 +11,10 @@ function Movies() {
         currentPage,
         totalPages,
         handleSearch,
-        handlePageChange
+        handlePageChange,
+        filters,
+        setFilters,
+        showFilters
     } = useMovies()
 
     return (
@@ -23,7 +26,11 @@ function Movies() {
             />
             <section id="movies" className="pt-12">
                 <div className="container mx-auto px-6 w-full my-4">
-                    <h3 className="text-xl font-semibold mb-2">Popular Movies</h3>
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-xl font-semibold mb-2">Popular Movies</h3>
+                    </div>
+                    
+                    <MovieFilters filters={filters} setFilters={setFilters} showFilters={showFilters} />
 
                     {error && (
                         <div className="flex justify-center text-red-700 font-medium">{error}</div>
