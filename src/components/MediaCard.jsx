@@ -1,13 +1,21 @@
 import { genres } from "../utils/genres"
-import { BookmarkIcon, InfoIcon } from "./icons"
+import { BookmarkIcon } from "./icons"
 import ImageWithFallback from "./ImageWithFallback"
+import { useNavigate } from "react-router-dom"
 
 function MediaCard({ media }) {
-    const title = media.title || media.name
+    const title = media.title || media.name || "Untitled"
     const year = (media.release_date || media.first_air_date)?.split("-")[0]
+    const navigate = useNavigate()
 
     function onAddToWatchlistClick() {
         alert("clicked")
+    }
+
+    const handleMediaClick = () => {
+        if (!media?.id) return
+        const type = media.title ? "movie" : "tv"
+        navigate(`/${type}/${media.id}`)
     }
 
     const mediaGenres = media.genre_ids
@@ -34,7 +42,7 @@ function MediaCard({ media }) {
                     </button>
                 </div>
                 <div className="flex gap-2 justify-center items-center">
-                    <button className="bg-[#222028] hover:bg-[#222028]/90 hover:text-primary rounded-lg text-sm font-medium px-4 py-2 mt-14 transition">
+                    <button onClick={handleMediaClick} className="bg-[#222028] hover:bg-[#222028]/90 hover:text-primary rounded-lg text-sm font-medium px-4 py-2 mt-14 transition">
                         Read More
                     </button>
                 </div>

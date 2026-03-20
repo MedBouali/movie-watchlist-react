@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import Movies from "./pages/movies"
 import Watchlist from "./pages/Watchlist"
 import Shows from "./pages/shows"
+import MediaDetails from "./pages/mediaDetails"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/tv-shows" element={<Shows />} />
         <Route path="/watchlist" element={<Watchlist />} />
+        <Route path="/:type/:id" element={<MediaDetails />} />
       </Routes>
     </MainLayout>
   )

@@ -1,0 +1,5 @@
+export { default as MediaHeader } from "./MediaHeader"
+export { default as MediaMeta } from "./MediaMeta"
+export { default as MediaTrailer } from "./MediaTrailer"
+export { default as SimilarMedia } from "./SimilarMedia"
+export { default as CastList } from "./CastList"

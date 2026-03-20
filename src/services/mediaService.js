@@ -1,37 +1,44 @@
-import { fetchFromAPI } from "./api";
+import { fetchFromAPI } from "./api"
+import { ENDPOINTS } from "./endpoints"
 
-export const getPopularMovies = async (page = 1) => {
-    return fetchFromAPI("/movie/popular", page)
+export const getPopularMovies = (page = 1) =>
+  fetchFromAPI(ENDPOINTS.movies.popular, page)
+
+export const searchMovies = (query, page = 1) =>
+  fetchFromAPI(ENDPOINTS.movies.search, page, { query })
+
+export const discoverMovies = (filters = {}, page = 1) => {
+  const params = {}
+
+  if (filters.genre) params.with_genres = filters.genre
+  if (filters.year) params.primary_release_year = filters.year
+  if (filters.rating) params["vote_average.gte"] = filters.rating
+
+  return fetchFromAPI(ENDPOINTS.movies.discover, page, params)
 }
 
-export const searchMovies = async (query, page = 1) => {
-    return fetchFromAPI("/search/movie", page, `query=${encodeURIComponent(query)}`)
+export const getPopularTVShows = (page = 1) =>
+  fetchFromAPI(ENDPOINTS.tv.popular, page)
+
+export const searchTVShows = (query, page = 1) =>
+  fetchFromAPI(ENDPOINTS.tv.search, page, { query })
+
+export const discoverTVShows = (filters = {}, page = 1) => {
+  const params = {}
+
+  if (filters.genre) params.with_genres = filters.genre
+  if (filters.year) params.first_air_date_year = filters.year
+  if (filters.rating) params["vote_average.gte"] = filters.rating
+
+  return fetchFromAPI(ENDPOINTS.tv.discover, page, params)
 }
 
-export const discoverMovies = async (filters, page = 1) => {
-    let query = ""
+export const getMovieDetails = (id) =>
+  fetchFromAPI(ENDPOINTS.movies.details(id), 1, {
+    append_to_response: "videos,credits,similar",
+  })
 
-    if (filters.genre) query += `&with_genres=${filters.genre}`
-    if (filters.year) query += `&primary_release_year=${filters.year}`
-    if (filters.rating) query += `&vote_average.gte=${filters.rating}`
-
-    return fetchFromAPI("/discover/movie", page, query)
-}
-
-export const getPopularTVShows = async (page = 1) => {
-    return fetchFromAPI("/tv/popular", page)
-}
-
-export const searchTVShows = async (query, page = 1) => {
-    return fetchFromAPI("/search/tv", page, `query=${encodeURIComponent(query)}`)
-}
-
-export const discoverTVShows = async (filters, page = 1) => {
-    let query = ""
-
-    if (filters.genre) query += `&with_genres=${filters.genre}`
-    if (filters.year) query += `&first_air_date_year=${filters.year}`
-    if (filters.rating) query += `&vote_average.gte=${filters.rating}`
-
-    return fetchFromAPI("/discover/tv", page, query)
-}
+export const getTVDetails = (id) =>
+  fetchFromAPI(ENDPOINTS.tv.details(id), 1, {
+    append_to_response: "videos,credits,similar",
+  })

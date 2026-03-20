@@ -1,4 +1,12 @@
-import { MediaCard, SearchInput, Pagination, EmptyState, MediaFilters } from "../../components"
+import {
+    MediaCard,
+    SearchInput,
+    Pagination,
+    EmptyState,
+    LoadingState,
+    ErrorState,
+    MediaFilters
+} from "../../components"
 import useMedia from "../../hooks/useMedia"
 
 export default function MediaListPage({ type = "movie", title }) {
@@ -64,33 +72,30 @@ export default function MediaListPage({ type = "movie", title }) {
                         showFilters={showFilters}
                     />
 
-                    {error && (
-                        <div className="flex justify-center text-red-700 font-medium">{error}</div>
-                    )}
+                    {error ? (
+                        <ErrorState title="Failed to Load" description={error} />
+                    )
+                        : isLoading ? (
+                            <LoadingState message="Loading media..." />
+                        ) : media.length === 0 ? (
+                            <EmptyState title={emptyTitle} description={emptyDescription} />
+                        ) : (
+                            <>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 py-4">
+                                    {media.map((item) => (
+                                        <MediaCard key={item.id} media={item} />
+                                    ))}
+                                </div>
 
-                    {isLoading ? (
-                        <div className="flex flex-col items-center justify-center py-16 text-center">
-                            Loading...
-                        </div>
-                    ) : media.length === 0 ? (
-                        <EmptyState title={emptyTitle} description={emptyDescription} />
-                    ) : (
-                        <>
-                            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 py-4">
-                                {media.map((item) => (
-                                    <MediaCard key={item.id} media={item} />
-                                ))}
-                            </div>
-
-                            {!isLoading && media.length > 0 && (
-                                <Pagination
-                                    currentPage={currentPage}
-                                    totalPages={totalPages}
-                                    onPageChange={handlePageChange}
-                                />
-                            )}
-                        </>
-                    )}
+                                {!isLoading && media.length > 0 && (
+                                    <Pagination
+                                        currentPage={currentPage}
+                                        totalPages={totalPages}
+                                        onPageChange={handlePageChange}
+                                    />
+                                )}
+                            </>
+                        )}
                 </div>
             </section>
         </>
