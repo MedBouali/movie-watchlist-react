@@ -24,7 +24,7 @@ function MediaCard({ media }) {
         .join(", ")
 
     return (
-        <div className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3]">
+        <div className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3] group-hover transition-transform">
             <ImageWithFallback
                 src={
                     media.poster_path
@@ -41,15 +41,20 @@ function MediaCard({ media }) {
                         <BookmarkIcon className="w-4 h-4" />
                     </button>
                 </div>
-                <div className="flex gap-2 justify-center items-center">
-                    <button onClick={handleMediaClick} className="bg-[#222028] hover:bg-[#222028]/90 hover:text-primary rounded-lg text-sm font-medium px-4 py-2 mt-14 transition">
-                        Read More
-                    </button>
-                </div>
-                <p className="text-white text-xs line-clamp-4 mb-14">{media.overview}</p>
+            </div>
+            <div className="absolute inset-0 flex justify-center items-start mt-[50%]
+                opacity-0 group-hover:opacity-100 
+                transition z-20 pointer-events-none">
+                <button
+                    onClick={handleMediaClick}
+                    className="pointer-events-auto bg-[#222028]/70 hover:bg-[#222028]/90 hover:text-primary rounded-lg text-sm font-medium px-4 py-2 transition"
+                >
+                    Read More
+                </button>
             </div>
             <div
                 className="absolute bottom-0 left-0 w-full p-3 bg-linear-to-t from-gray-900/80 to-transparent">
+                <p className="text-transparent text-xs line-clamp-4 group-hover:text-white">{media.overview}</p>
                 <p className="text-[11px] text-white">{year}</p>
                 <h3 className="text-sm font-semibold text-white">{title}</h3>
                 {mediaGenres && (
