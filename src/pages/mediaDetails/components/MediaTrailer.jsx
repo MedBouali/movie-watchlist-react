@@ -12,9 +12,9 @@ function MediaTrailer({ trailer }) {
                 href={youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block group max-w-[120px] cursor-pointer"
+                className="block group max-w-[90px] cursor-pointer"
             >
-                <div className="relative w-[120px] h-[70px] rounded-lg overflow-hidden border border-white/10">
+                <div className="relative w-[90px] h-[51px] rounded-lg overflow-hidden border border-white/10">
                     <img
                         src={thumbnail}
                         alt="Trailer thumbnail"
