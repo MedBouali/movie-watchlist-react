@@ -26,15 +26,15 @@ function RandomMovie() {
     return (
         <div className="text-center">
             <p className="text-gray-400 text-[0.9rem] mb-6">
-                If you're wondering what to watch tonight, just click the button and{" "}
-                <span className="font-semibold"> Watch</span>
-                <span className="text-primary font-semibold">Wise</span> will pick a random movie for you.
+                Not sure what to watch tonight? Click the button and{" "}
+                <span className="font-semibold">Watch</span>
+                <span className="text-primary font-semibold">Wise</span> will pick for you.
             </p>
 
             <button
                 onClick={handlePick}
                 disabled={loading}
-                className="text-sm font-medium border-2 border-primary hover:bg-[#222028]/90 hover:text-primary transition px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="text-sm font-medium border-2 border-primary bg-primary text-[#222028] hover:bg-primary/90 transition px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {loading ? "Picking..." : "Pick a Random Movie"}
             </button>

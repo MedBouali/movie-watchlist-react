@@ -18,7 +18,7 @@ function HeroTopMovieCard({ media }) {
 
             <div className="absolute flex flex-col items-start justify-end inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity p-2 z-20 pointer-events-none">
                 <p className="text-[9px] text-white">{year}</p>
-                <h3 className="text-xs font-semibold text-white">{title}</h3>
+                <h3 className="text-xs font-semibold text-white text-left">{title}</h3>
             </div>
         </article>
     )

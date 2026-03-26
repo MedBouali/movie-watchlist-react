@@ -2,12 +2,12 @@ import MediaCard from "@/features/media/components/MediaCard"
 
 function MediaRow({ title, media = [] }) {
     return (
-        <section className="max-w-7xl px-5 mx-auto my-10">
+        <section className="max-w-7xl px-5 mx-auto my-5">
             <h2 className="text-2xl font-semibold mb-6">{title}</h2>
 
             <div className="flex gap-4 overflow-x-auto scrollbar-hide">
                 {media.map((item) => (
-                    <div key={item.id} className="flex-none w-40 md:w-48 snap-start">
+                    <div key={item.id} className="flex-none w-38 md:w-44 snap-start">
                         <MediaCard media={item} />
                     </div>
                 ))}
