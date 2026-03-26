@@ -8,7 +8,7 @@ import {
 } from "@/features/mediaDetails"
 import { formatMediaDetails } from "@/features/mediaDetails/utils/formatMediaDetails"
 
-function MediaDetails() {
+function MediaDetailsView() {
     const { type, id } = useParams()
     const navigate = useNavigate()
     const { media, isLoading, error } = useMediaDetails(type, id)
@@ -47,4 +47,4 @@ function MediaDetails() {
     )
 }
 
-export default MediaDetails
+export default MediaDetailsView

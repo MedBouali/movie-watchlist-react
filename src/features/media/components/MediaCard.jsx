@@ -3,8 +3,14 @@ import { BookmarkIcon } from "@/components/icons"
 import { ImageWithFallback } from "@/components/ui"
 import { formatMedia } from "@/features/media/utils/formatMedia"
 
-function MediaCard({ media }) {
-    const { title, year, type, mediaGenres } = formatMedia(media)
+function MediaCard({
+    media,
+    showOverview = true,
+    showRating = true,
+    showAddToList = true,
+    showGenres = true
+}) {
+    const { title, year, type, voteAverage, mediaGenres, imageUrl, overview } = formatMedia(media)
     const to = media?.id ? `/${type}/${media.id}` : "#"
 
     function onAddToWatchlistClick(e) {
@@ -21,38 +27,40 @@ function MediaCard({ media }) {
             />
 
             <ImageWithFallback
-                src={
-                    media.poster_path
-                        ? `https://image.tmdb.org/t/p/w500/${media.poster_path}`
-                        : null
-                }
+                src={imageUrl}
                 alt={title}
                 className="w-full h-full object-cover"
             />
 
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-3 z-20 pointer-events-none">
                 <div className="flex justify-between">
-                    <div className="flex justify-center items-center rounded-full text-[11px] font-medium w-8 h-8 bg-black/20 border-2 border-primary">
-                        {media.vote_average.toFixed(1)}
-                    </div>
+                    {showRating && (
+                        <div className="flex justify-center items-center rounded-full text-[11px] font-medium w-8 h-8 bg-black/20 border-2 border-primary">
+                            {voteAverage}
+                        </div>
+                    )}
 
-                    <button
-                        onClick={onAddToWatchlistClick}
-                        title="Add to list"
-                        className="pointer-events-auto relative z-30 grid place-items-center bg-[#222028] hover:bg-[#222028]/90 hover:text-primary w-9 h-8 rounded-lg text-sm transition"
-                    >
-                        <BookmarkIcon className="w-4 h-4" />
-                    </button>
+                    {showAddToList && (
+                        <button
+                            onClick={onAddToWatchlistClick}
+                            title="Add to list"
+                            className="pointer-events-auto relative z-30 grid place-items-center bg-[#222028] hover:bg-[#222028]/90 hover:text-primary w-9 h-8 rounded-lg text-sm transition"
+                        >
+                            <BookmarkIcon className="w-4 h-4" />
+                        </button>
+                    )}
                 </div>
             </div>
 
             <div className="absolute bottom-0 left-0 w-full p-3 bg-linear-to-t from-gray-900/70 to-transparent z-20">
-                <p className="text-transparent text-xs line-clamp-4 group-hover:text-white">
-                    {media.overview}
-                </p>
+                {showOverview && (
+                    <p className="text-transparent text-xs line-clamp-4 group-hover:text-white">
+                        {overview}
+                    </p>
+                )}
                 <p className="text-[11px] text-white">{year}</p>
                 <h3 className="text-sm font-semibold text-white">{title}</h3>
-                {mediaGenres && (
+                {showGenres && mediaGenres && (
                     <p className="text-xs text-primary">{mediaGenres}</p>
                 )}
             </div>

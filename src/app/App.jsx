@@ -1,9 +1,12 @@
 import { Routes, Route } from "react-router-dom"
 import { MainLayout } from "@/components/layout"
 import { Home } from "@/app/pages"
-import { Movies, Shows } from "@/features/media"
-import { Watchlist } from "@/features/watchlist"
-import { MediaDetails } from "@/features/mediaDetails"
+import {
+  Movies,
+  Shows,
+  Watchlist,
+  MediaDetails
+} from "@/app/pages"
 
 function App() {
   return (

@@ -1,1 +1,5 @@
 export { default as Home } from "./Home"
+export { default as Movies } from "./Movies"
+export { default as Shows } from "./Shows"
+export { default as Watchlist } from "./Watchlist"
+export { default as MediaDetails } from "./MediaDetails"

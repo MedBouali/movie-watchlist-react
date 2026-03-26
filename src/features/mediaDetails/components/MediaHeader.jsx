@@ -1,7 +1,7 @@
 import { MediaMeta, MediaTrailer } from "@/features/mediaDetails"
 import { ImageWithFallback } from "@/components/ui"
 
-function MediaHeader({ media, title, year, navigate, trailer }) {
+function MediaHeader({ media, title, year, navigate, trailer, showActions = true }) {
     return (
         <div className="grid md:grid-cols-[260px_1fr] gap-10">
             <div className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3]">
@@ -45,16 +45,20 @@ function MediaHeader({ media, title, year, navigate, trailer }) {
                 </div>
 
                 <div className="flex gap-3 mt-4">
-                    <button
-                        onClick={() => navigate(-1)}
-                        className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
-                    >
-                        Back
-                    </button>
+                    {showActions && (
+                        <>
+                            <button
+                                onClick={() => navigate(-1)}
+                                className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
+                            >
+                                Back
+                            </button>
 
-                    <button className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition">
-                        Add To List
-                    </button>
+                            <button className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition">
+                                Add To List
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
