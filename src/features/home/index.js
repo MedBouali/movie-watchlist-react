@@ -1,4 +1,6 @@
 export { default as useHome } from "./hooks/useHome"
+export { default as useRotatingIndex } from "./hooks/useRotatingIndex"
+export { default as useAutoScrollCarousel } from "./hooks/useAutoScrollCarousel"
 export { default as HeroSection } from "./components/HeroSection"
 export { default as MediaRow } from "./components/MediaRow"
 export { default as HeroTopMovieCard } from "./components/HeroTopMovieCard"

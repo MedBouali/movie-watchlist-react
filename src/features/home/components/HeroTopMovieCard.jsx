@@ -3,7 +3,7 @@ import { ImageWithFallback } from "@/components/ui"
 import { formatMedia } from "@/features/media/utils/formatMedia"
 
 function HeroTopMovieCard({ media }) {
-    const { title, year, type, imageUrl } = formatMedia(media)
+    const { title, type, imageUrl } = formatMedia(media)
     const to = media?.id ? `/${type}/${media.id}` : "#"
 
     return (

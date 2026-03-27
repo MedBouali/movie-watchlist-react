@@ -1,32 +1,10 @@
-import { useEffect, useRef } from "react"
 import HeroTopMovieCard from "@/features/home/components/HeroTopMovieCard"
+import useAutoScrollCarousel from "@/features/home/hooks/useAutoScrollCarousel"
 
 function HeroTopMovies({ movies = [] }) {
-    const containerRef = useRef(null)
+    const containerRef = useAutoScrollCarousel(0.5)
     const top20 = movies.slice(0, 20)
     const loopMovies = [...top20, ...top20]
-
-    useEffect(() => {
-        const container = containerRef.current
-        if (!container) return
-
-        let animationFrame
-        const speed = 0.5
-
-        const scroll = () => {
-            container.scrollLeft += speed
-
-            if (container.scrollLeft >= container.scrollWidth / 2) {
-                container.scrollLeft -= container.scrollWidth / 2
-            }
-
-            animationFrame = requestAnimationFrame(scroll)
-        }
-
-        animationFrame = requestAnimationFrame(scroll)
-
-        return () => cancelAnimationFrame(animationFrame)
-    }, [])
 
     return (
         <div className="w-full overflow-hidden">

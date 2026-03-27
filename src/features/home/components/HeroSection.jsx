@@ -1,21 +1,11 @@
-import { useEffect, useState } from "react"
 import { HeroTopMovies, RandomMovie } from "@/features/home"
 import { Container } from "@/components/layout"
+import useRotatingIndex from "@/features/home/hooks/useRotatingIndex"
 
 function HeroSection({ movies }) {
-    const [bgIndex, setBgIndex] = useState(0)
-
     const topMovies = movies.slice(0, 10)
 
-    useEffect(() => {
-        if (!topMovies.length) return
-
-        const interval = setInterval(() => {
-            setBgIndex((prev) => (prev + 1) % topMovies.length)
-        }, 10000)
-
-        return () => clearInterval(interval)
-    }, [topMovies.length])
+    const bgIndex = useRotatingIndex(topMovies.length, 10000)
 
     const currentMovie = topMovies[bgIndex]
 
@@ -32,7 +22,7 @@ function HeroSection({ movies }) {
                 />
             )}
 
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80 backdrop-blur-sm" />
 
             <div className="relative z-10 w-full">
                 <Container>
@@ -50,7 +40,7 @@ function HeroSection({ movies }) {
                         <HeroTopMovies movies={movies} />
 
                         <div className="mt-8">
-                            <RandomMovie media={movies} />
+                            <RandomMovie />
                         </div>
                     </div>
                 </Container>
