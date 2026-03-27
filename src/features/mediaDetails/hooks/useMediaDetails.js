@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { getMovieDetails, getTVDetails } from "@/features/mediaDetails"
+import { getMovieDetails, getTVDetails, getWatchProviders } from "@/features/mediaDetails"
 
 export default function useMediaDetails(type, id) {
     const [media, setMedia] = useState(null)
+    const [providers, setProviders] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -17,7 +18,10 @@ export default function useMediaDetails(type, id) {
                         ? await getMovieDetails(id)
                         : await getTVDetails(id)
 
+                const providerData = await getWatchProviders(id, type)
+
                 setMedia(data)
+                setProviders(providerData.results || null)
             } catch (err) {
                 setError(err.message)
             } finally {
@@ -28,5 +32,5 @@ export default function useMediaDetails(type, id) {
         if (id) fetchDetails()
     }, [id, type])
 
-    return { media, isLoading, error }
+    return { media, providers, isLoading, error }
 }

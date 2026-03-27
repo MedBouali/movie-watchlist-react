@@ -4,7 +4,8 @@ import {
     MediaHeader,
     SimilarMedia,
     CastList,
-    useMediaDetails
+    useMediaDetails,
+    WatchProviders
 } from "@/features/mediaDetails"
 import { formatMediaDetails } from "@/features/mediaDetails/utils/formatMediaDetails"
 import { Container } from "@/components/layout"
@@ -12,7 +13,7 @@ import { Container } from "@/components/layout"
 function MediaDetailsView() {
     const { type, id } = useParams()
     const navigate = useNavigate()
-    const { media, isLoading, error } = useMediaDetails(type, id)
+    const { media, providers, isLoading, error } = useMediaDetails(type, id)
 
     if (isLoading) return <LoadingState message="Loading media details..." />
 
@@ -40,6 +41,8 @@ function MediaDetailsView() {
                         navigate={navigate}
                         trailer={trailer}
                     />
+
+                    <WatchProviders providers={providers} country="US" />
 
                     <CastList cast={cast} />
 
