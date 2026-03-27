@@ -7,6 +7,7 @@ import {
     useMediaDetails
 } from "@/features/mediaDetails"
 import { formatMediaDetails } from "@/features/mediaDetails/utils/formatMediaDetails"
+import { Container } from "@/components/layout"
 
 function MediaDetailsView() {
     const { type, id } = useParams()
@@ -29,21 +30,23 @@ function MediaDetailsView() {
     const { title, year, trailer, cast, similar } = formatMediaDetails(media)
 
     return (
-        <div className="text-white min-h-screen">
-            <div className="max-w-6xl mx-auto px-6 pt-16">
-                <MediaHeader
-                    media={media}
-                    title={title}
-                    year={year}
-                    navigate={navigate}
-                    trailer={trailer}
-                />
+        <Container>
+            <div className="text-white min-h-screen">
+                <div className="mx-auto pt-12">
+                    <MediaHeader
+                        media={media}
+                        title={title}
+                        year={year}
+                        navigate={navigate}
+                        trailer={trailer}
+                    />
 
-                <CastList cast={cast} />
+                    <CastList cast={cast} />
 
-                <SimilarMedia similar={similar} type={type} />
+                    <SimilarMedia similar={similar} type={type} />
+                </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

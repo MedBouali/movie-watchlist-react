@@ -17,7 +17,7 @@ function HeroTopMovies({ movies = [] }) {
             container.scrollLeft += speed
 
             if (container.scrollLeft >= container.scrollWidth / 2) {
-                container.scrollLeft = 0
+                container.scrollLeft -= container.scrollWidth / 2
             }
 
             animationFrame = requestAnimationFrame(scroll)
@@ -29,18 +29,20 @@ function HeroTopMovies({ movies = [] }) {
     }, [])
 
     return (
-        <div
-            ref={containerRef}
-            className="w-full overflow-x-hidden flex gap-2"
-        >
-            {loopMovies.map((movie, index) => (
-                <div
-                    key={`${movie.id}-${index}`}
-                    className="flex-shrink-0 flex"
-                >
-                    <HeroTopMovieCard media={movie} />
-                </div>
-            ))}
+        <div className="w-full overflow-hidden">
+            <div
+                ref={containerRef}
+                className="overflow-x-hidden flex gap-2"
+            >
+                {loopMovies.map((movie, index) => (
+                    <div
+                        key={`${movie.id}-${index}`}
+                        className="flex-shrink-0"
+                    >
+                        <HeroTopMovieCard media={movie} />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

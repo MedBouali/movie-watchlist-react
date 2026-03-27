@@ -11,6 +11,7 @@ import {
     ErrorState
 } from "@/components/ui"
 import { formatMediaListPage } from "@/features/media/utils/formatMediaListPage"
+import { Container } from "@/components/layout"
 
 export default function MediaListPage({ type = "movie", title }) {
     const {
@@ -39,7 +40,7 @@ export default function MediaListPage({ type = "movie", title }) {
     })
 
     return (
-        <>
+        <Container>
             <SearchInput
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
@@ -49,7 +50,7 @@ export default function MediaListPage({ type = "movie", title }) {
             />
 
             <section className="pt-12" id={type === "movie" ? "movies" : "tv-shows"}>
-                <div className="container mx-auto px-6 w-full my-4">
+                <div className="mx-auto w-full my-4">
                     <div className="flex justify-between items-center mb-4">
                         <h1 className="text-2xl font-semibold mb-2">
                             {heading.includes('"') ? (
@@ -95,6 +96,6 @@ export default function MediaListPage({ type = "movie", title }) {
                     )}
                 </div>
             </section>
-        </>
+        </Container>
     )
 }

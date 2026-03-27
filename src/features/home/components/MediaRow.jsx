@@ -2,7 +2,7 @@ import MediaCard from "@/features/media/components/MediaCard"
 
 function MediaRow({ title, media = [] }) {
     return (
-        <section className="max-w-7xl px-5 mx-auto my-5">
+        <section className="mx-auto my-12">
             <h2 className="text-2xl font-semibold mb-6">{title}</h2>
 
             <div className="flex gap-4 overflow-x-auto scrollbar-hide">

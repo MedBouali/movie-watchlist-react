@@ -1,6 +1,7 @@
 import useHome from "@/features/home/hooks/useHome"
 import { HeroSection, MediaRow } from "@/features/home"
 import { LoadingState, ErrorState } from "@/components/ui"
+import { Container } from "@/components/layout"
 
 function Home() {
     const { popularMovies, popularTV, isLoading, error } = useHome()
@@ -18,8 +19,10 @@ function Home() {
     return (
         <>
             <HeroSection movies={popularMovies} />
-            <MediaRow title="Popular Movies" media={popularMovies} />
-            <MediaRow title="Popular TV Shows" media={popularTV} />
+            <Container>
+                <MediaRow title="Popular Movies" media={popularMovies} />
+                <MediaRow title="Popular TV Shows" media={popularTV} />
+            </Container>
         </>
     )
 }
