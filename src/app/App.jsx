@@ -5,8 +5,11 @@ import {
   Movies,
   Shows,
   Watchlist,
-  MediaDetails
+  MediaDetails,
+  Login,
+  Register
 } from "@/app/pages"
+import ProtectedRoute from "@/components/routes/ProtectedRoute"
 
 function App() {
   return (
@@ -15,8 +18,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/tv-shows" element={<Shows />} />
-        <Route path="/watchlist" element={<Watchlist />} />
+        <Route
+          path="/watchlist"
+          element={
+            <ProtectedRoute>
+              <Watchlist />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/:type/:id" element={<MediaDetails />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </MainLayout>
   )
