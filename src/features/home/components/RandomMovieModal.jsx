@@ -42,7 +42,7 @@ function RandomMovieModal({ movie, onClose }) {
                             title={title}
                             year={year}
                             trailer={trailer}
-                            showActions={false}
+                            showBackButton={false}
                         />
                     </div>
                 </div>

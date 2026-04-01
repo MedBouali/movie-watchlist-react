@@ -1,17 +1,7 @@
-import { Navigate } from "react-router-dom"
-import { useAuth } from "@/app/providers"
+import { WatchlistPage } from "@/features/watchlist"
 
-function Watchlist() {
-    const { user, isLoading } = useAuth()
-
-    if (isLoading) return null
-
-    if (!user) return <Navigate to="/login" />
-    
+export default function Watchlist() {
     return (
-        <div>Watchlist</div>
-
+        <WatchlistPage />
     )
 }
-
-export default Watchlist

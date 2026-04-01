@@ -1,4 +1,4 @@
-import { MediaCard } from "@/features/media"
+import { MediaCard } from "@/components/cards"
 
 export default function SimilarMedia({ similar, type }) {
     if (!similar || similar.length === 0) return null

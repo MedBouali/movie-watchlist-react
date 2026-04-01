@@ -1,20 +1,24 @@
 import { MediaMeta, MediaTrailer } from "@/features/mediaDetails"
-import { ImageWithFallback } from "@/components/ui"
+import { useWatchlistActions, WatchlistActions } from "@/features/watchlist"
+import { MediaCard } from "@/components/cards"
 
-function MediaHeader({ media, title, year, navigate, trailer, showActions = true }) {
+function MediaHeader({ media, title, year, navigate, trailer, showBackButton = true }) {
+    const {
+        isSaved,
+        isWatched,
+        handleToggleWatchlist,
+        handleToggleWatched
+    } = useWatchlistActions(media)
+
     return (
         <div className="grid md:grid-cols-[260px_1fr] gap-10">
-            <div className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3]">
-                <ImageWithFallback
-                    src={
-                        media.poster_path
-                            ? `https://image.tmdb.org/t/p/w500/${media.poster_path}`
-                            : null
-                    }
-                    alt={title}
-                    className="w-full h-full object-cover"
-                />
-            </div>
+            <MediaCard
+                media={media}
+                showWatchlistActions={false}
+                showOverview={false}
+                showGenres={false}
+                isClickable={false}
+            />
 
             <div className="flex flex-col justify-between">
                 <div>
@@ -45,20 +49,22 @@ function MediaHeader({ media, title, year, navigate, trailer, showActions = true
                 </div>
 
                 <div className="flex gap-3 mt-4">
-                    {showActions && (
-                        <>
-                            <button
-                                onClick={() => navigate(-1)}
-                                className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
-                            >
-                                Back
-                            </button>
-
-                            <button className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition">
-                                Add To List
-                            </button>
-                        </>
+                    {showBackButton && (
+                        <button
+                            onClick={() => navigate(-1)}
+                            className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
+                        >
+                            Back
+                        </button>
                     )}
+
+                    <WatchlistActions
+                        isSaved={isSaved}
+                        isWatched={isWatched}
+                        onToggleWatchlist={handleToggleWatchlist}
+                        onToggleWatched={handleToggleWatched}
+                        variant="header"
+                    />
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
 import {
     SearchInput,
-    MediaCard,
     MediaFilters,
     useMedia
 } from "@/features/media"
@@ -8,10 +7,11 @@ import {
     Pagination,
     EmptyState,
     LoadingState,
-    ErrorState
+    ErrorState,
 } from "@/components/ui"
 import { formatMediaListPage } from "@/features/media/utils/formatMediaListPage"
 import { Container } from "@/components/layout"
+import { MediaCard } from "@/components/cards"
 
 export default function MediaListPage({ type = "movie", title }) {
     const {

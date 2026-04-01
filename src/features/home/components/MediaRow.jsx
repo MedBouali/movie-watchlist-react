@@ -1,4 +1,4 @@
-import MediaCard from "@/features/media/components/MediaCard"
+import { MediaCard } from "@/components/cards"
 
 function MediaRow({ title, media = [] }) {
     return (
