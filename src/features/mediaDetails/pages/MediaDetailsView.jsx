@@ -15,7 +15,12 @@ function MediaDetailsView() {
     const navigate = useNavigate()
     const { media, providers, isLoading, error } = useMediaDetails(type, id)
 
-    if (isLoading) return <LoadingState message="Loading media details..." />
+    if (isLoading)
+        return (
+            <Container>
+                <LoadingState message="Loading media details..." />
+            </Container>
+        )
 
     if (error) return <ErrorState title="Failed to Load" description={error} />
 

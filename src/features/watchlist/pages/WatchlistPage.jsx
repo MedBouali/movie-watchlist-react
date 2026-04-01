@@ -1,8 +1,17 @@
 import { useState } from "react"
 import { Container } from "@/components/layout"
 import { MediaCard } from "@/components/cards"
-import { useWatchlist, WatchlistFilters, useFilteredWatchlist } from "@/features/watchlist"
-import { LoadingState, EmptyState } from "@/components/ui"
+import {
+    useWatchlist,
+    WatchlistFilters,
+    useFilteredWatchlist,
+    usePaginatedWatchlist
+} from "@/features/watchlist"
+import {
+    LoadingState,
+    EmptyState,
+    Pagination
+} from "@/components/ui"
 
 function WatchlistPage() {
     const { watchlist, isLoading } = useWatchlist()
@@ -14,22 +23,13 @@ function WatchlistPage() {
 
     const { filteredWatchlist, heading } = useFilteredWatchlist(watchlist, filters)
 
-    if (isLoading) return (
-        <Container>
-            <LoadingState message="Loading your watchlist..." />
-        </Container>
-    )
-
-    if (watchlist.length === 0) {
-        return (
-            <Container>
-                <EmptyState
-                    title="Your watchlist is empty"
-                    description="Add movies or shows to your watchlist to see them here."
-                />
-            </Container>
-        )
-    }
+    const {
+        paginatedWatchlist,
+        currentPage,
+        setCurrentPage,
+        totalPages,
+        handlePageChange
+    } = usePaginatedWatchlist(filteredWatchlist, 20, filters)
 
     return (
         <Container>
@@ -40,14 +40,36 @@ function WatchlistPage() {
 
                 <WatchlistFilters
                     filters={filters}
-                    setFilters={setFilters}
+                    setFilters={(newFilters) => {
+                        setFilters(newFilters)
+                        setCurrentPage(1)
+                    }}
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 py-4">
-                    {filteredWatchlist.map((item) => (
-                        <MediaCard key={item.id} media={item} />
-                    ))}
-                </div>
+                {isLoading ? (
+                    <LoadingState message="Loading your watchlist..." />
+                ) : filteredWatchlist.length === 0 ? (
+                    <EmptyState
+                        title={`No ${filters.status === "watched" ? "watched" : "unwatched"} ${filters.type === "movie" ? "movies" : "TV shows"}`}
+                        description={`You don't have any ${filters.status === "watched" ? "watched" : "unwatched"} ${filters.type === "movie" ? "movies" : "TV shows"} in your watchlist.`}
+                    />
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 py-4">
+                            {paginatedWatchlist.map((item) => (
+                                <MediaCard key={item.id} media={item} />
+                            ))}
+                        </div>
+
+                        {totalPages > 1 && (
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={handlePageChange}
+                            />
+                        )}
+                    </>
+                )}
             </section>
         </Container>
     )
