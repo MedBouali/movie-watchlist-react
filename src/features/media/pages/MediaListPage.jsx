@@ -7,6 +7,7 @@ import {
     EmptyState,
     LoadingState,
     ErrorState,
+    Heading
 } from "@/components/ui"
 import { SearchInput } from "@/components/forms"
 import { formatMediaListPage } from "@/features/media/utils/formatMediaListPage"
@@ -51,19 +52,7 @@ export default function MediaListPage({ type = "movie", title }) {
 
             <section className="pt-12" id={type === "movie" ? "movies" : "tv-shows"}>
                 <div className="mx-auto w-full my-4">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className="text-2xl font-semibold mb-2">
-                            {heading.includes('"') ? (
-                                <>
-                                    {heading.split('"')[0]}
-                                    <span className="text-primary">"{heading.split('"')[1]}"</span>
-                                    {heading.split('"')[2] || ""}
-                                </>
-                            ) : (
-                                heading
-                            )}
-                        </h1>
-                    </div>
+                    <Heading text={heading} />
 
                     <MediaFilters
                         filters={filters}

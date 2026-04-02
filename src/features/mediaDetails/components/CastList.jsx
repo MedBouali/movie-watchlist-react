@@ -1,13 +1,13 @@
-import { ImageWithFallback } from "@/components/ui"
+import { ImageWithFallback, Heading } from "@/components/ui"
 
 function CastList({ cast }) {
     if (!cast || cast.length === 0) return null
 
     return (
         <div className="mt-12">
-            <h2 className="text-2xl font-semibold mb-6">Cast</h2>
+            <Heading text="Cast" />
 
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide py-2">
+            <div className="flex gap-4 overflow-x-auto scrollbar-hide">
                 {cast.map((actor) => (
                     <div key={actor.id} className="flex-shrink-0 w-32 flex flex-col items-center">
                         <ImageWithFallback

@@ -1,9 +1,10 @@
 import { MediaCard } from "@/components/cards"
+import { Heading } from "@/components/ui"
 
 function MediaRow({ title, media = [] }) {
     return (
         <section className="mx-auto my-12">
-            <h2 className="text-2xl font-semibold mb-6">{title}</h2>
+            <Heading text={title} />
 
             <div className="flex gap-4 overflow-x-auto scrollbar-hide">
                 {media.map((item) => (

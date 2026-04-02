@@ -11,7 +11,8 @@ import {
 import {
     LoadingState,
     EmptyState,
-    Pagination
+    Pagination,
+    Heading
 } from "@/components/ui"
 import { SearchInput } from "@/components/forms"
 
@@ -60,9 +61,7 @@ function WatchlistPage() {
 
             <section className="pt-12">
                 <div className="mx-auto w-full my-4">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className="text-2xl font-semibold mb-2">{heading} ({filteredWatchlist.length})</h1>
-                    </div>
+                    <Heading text={`${heading} (${filteredWatchlist.length})`} />
 
                     <WatchlistFilters
                         filters={filters}

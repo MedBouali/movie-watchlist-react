@@ -1,7 +1,7 @@
 import { useState } from "react"
 import RandomMovieModal from "@/features/home/components/RandomMovieModal"
 import { getRandomMovie } from "@/features/home/api/homeApi"
-import { ErrorState } from "@/components/ui"
+import { ErrorState, Button } from "@/components/ui"
 
 function RandomMovie() {
     const [selected, setSelected] = useState(null)
@@ -31,13 +31,14 @@ function RandomMovie() {
                 <span className="text-primary font-semibold">Wise</span> will pick for you.
             </p>
 
-            <button
+            <Button
                 onClick={handlePick}
+                variant="primary"
+                size="md"
                 disabled={loading}
-                className="text-sm font-medium border-2 border-primary bg-primary text-[#222028] hover:bg-primary/90 transition px-6 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {loading ? "Picking..." : "Pick a Random Movie"}
-            </button>
+            </Button>
 
             {error && <ErrorState message={error} />}
 

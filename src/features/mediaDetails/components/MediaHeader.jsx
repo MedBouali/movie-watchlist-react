@@ -1,6 +1,7 @@
 import { MediaMeta, MediaTrailer } from "@/features/mediaDetails"
 import { useWatchlistActions, WatchlistActions } from "@/features/watchlist"
 import { MediaCard } from "@/components/cards"
+import { Button } from "@/components/ui"
 
 function MediaHeader({ media, title, year, navigate, trailer, showBackButton = true }) {
     const {
@@ -50,12 +51,13 @@ function MediaHeader({ media, title, year, navigate, trailer, showBackButton = t
 
                 <div className="flex gap-3 mt-4">
                     {showBackButton && (
-                        <button
+                        <Button
                             onClick={() => navigate(-1)}
-                            className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
+                            variant="secondary"
+                            size="md"
                         >
                             Back
-                        </button>
+                        </Button>
                     )}
 
                     <WatchlistActions

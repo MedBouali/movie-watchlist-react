@@ -4,6 +4,7 @@ import {
     CheckIcon,
     CheckFilledIcon
 } from "@/components/icons"
+import { Button } from "@/components/ui"
 
 function WatchlistActions({
     isSaved,
@@ -16,20 +17,22 @@ function WatchlistActions({
     if (variant === "header") {
         return (
             <>
-                <button
+                <Button
                     onClick={onToggleWatchlist}
-                    className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
+                    variant="secondary"
+                    size="md"
                 >
                     {isSaved ? "Remove from Watchlist" : "Add to Watchlist"}
-                </button>
+                </Button>
 
                 {isSaved && (
-                    <button
+                    <Button
                         onClick={onToggleWatched}
-                        className="px-4 py-2 rounded-lg text-sm font-medium bg-[#222028] hover:bg-[#222028]/90 hover:text-primary transition"
+                        variant="secondary"
+                        size="md"
                     >
                         {isWatched ? "Mark as Unwatched" : "Mark as Watched"}
-                    </button>
+                    </Button>
                 )}
             </>
         )

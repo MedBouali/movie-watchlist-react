@@ -3,20 +3,19 @@ import { Link } from "react-router-dom"
 import { MenuIcon } from "@/components/icons"
 import { logout } from "@/services/firebase/auth"
 import { useAuth } from "@/app/providers"
-import { Dropdown } from "@/components/ui"
-import { LoadingState } from "@/components/ui"
+import { Dropdown, LoadingState } from "@/components/ui"
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const { user, isLoading } = useAuth()
 
+    const navigate = useNavigate();
+
     const options = [
-        {
-            label: "Logout",
-            value: "logout",
-            action: logout,
-        },
-    ]
+        { label: "My Watchlist", value: "watchlist", action: () => navigate("/watchlist") },
+        { label: "Logout", value: "logout", action: logout },
+    ];
 
     const getAuthButtons = (isMobile = false) => {
         if (isLoading) return <LoadingState message="Loading..." inline={true} />;
@@ -25,13 +24,14 @@ function Navbar() {
             return (
                 <>
                     <Dropdown
-                        label={user.email}
+                        label={user.email.length > 20 ? user.email.substring(0, 20) + "..." : user.email}
                         options={options.map((opt) => ({
                             label: opt.label,
                             value: opt.value,
                             onSelect: opt.action,
                         }))}
                         onSelect={(option) => option.onSelect?.()}
+                        variant="primary"
                     />
                 </>
             )

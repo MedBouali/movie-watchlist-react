@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ErrorState } from "@/components/ui"
+import { ErrorState, Button, Input } from "@/components/ui"
 
 function AuthForm({
     title,
@@ -31,35 +31,36 @@ function AuthForm({
 
                 {error && <ErrorState description={error} py="py-3" />}
 
-                <input
+                <Input
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={onEmailChange}
-                    className="w-full mb-4 py-3 px-4 bg-[#222028] border-2 border-[#222028] text-[15px] placeholder-gray-400 rounded-lg outline-none focus:border-primary transition"
                 />
 
-                <input
+                <Input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={onPasswordChange}
-                    className="w-full mb-4 py-3 px-4 bg-[#222028] border-2 border-[#222028] text-[15px] placeholder-gray-400 rounded-lg outline-none focus:border-primary transition"
                 />
 
                 {confirmPassword !== undefined && onConfirmPasswordChange && (
-                    <input
+                    <Input
                         type="password"
                         placeholder="Confirm Password"
                         value={confirmPassword}
                         onChange={onConfirmPasswordChange}
-                        className="w-full mb-4 py-3 px-4 bg-[#222028] border-2 border-[#222028] text-[15px] placeholder-gray-400 rounded-lg outline-none focus:border-primary transition"
                     />
                 )}
 
-                <button className="bg-primary text-sm text-[#222028] font-medium px-5 py-[0.6rem] w-fit rounded-lg hover:bg-primary/90 transition block mx-auto">
+                <Button
+                    variant="primary"
+                    size="md"
+                    className="block mx-auto"
+                >
                     {buttonText}
-                </button>
+                </Button>
 
                 {linkText && linkHref && promptText && (
                     <p className="mt-6 text-center text-gray-400 text-sm">
