@@ -1,8 +1,8 @@
 import { useMemo } from "react"
 
-export default function useFilteredWatchlist(watchlist, filters) {
+export default function useFilteredWatchlist(filteredBySearch, filters) {
     const filteredWatchlist = useMemo(() => {
-        return watchlist.filter((item) => {
+        return filteredBySearch.filter((item) => {
             const matchesType = item.media_type === filters.type
 
             const matchesStatus =
@@ -12,7 +12,7 @@ export default function useFilteredWatchlist(watchlist, filters) {
 
             return matchesType && matchesStatus
         })
-    }, [watchlist, filters])
+    }, [filteredBySearch, filters])
 
     const heading = `${filters.status === "watched" ? "Watched" : "Unwatched"} ${filters.type === "movie" ? "Movies" : "TV Shows"}`
 

@@ -1,5 +1,4 @@
 import {
-    SearchInput,
     MediaFilters,
     useMedia
 } from "@/features/media"
@@ -9,6 +8,7 @@ import {
     LoadingState,
     ErrorState,
 } from "@/components/ui"
+import { SearchInput } from "@/components/forms"
 import { formatMediaListPage } from "@/features/media/utils/formatMediaListPage"
 import { Container } from "@/components/layout"
 import { MediaCard } from "@/components/cards"
