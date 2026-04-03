@@ -9,9 +9,12 @@ export function formatMedia(media) {
         ?.map((id) => genres.find((g) => g.id === id)?.name)
         .filter(Boolean)
         .join(", ")
-    const imageUrl = media.poster_path
+    const poster = media.poster_path
         ? `https://image.tmdb.org/t/p/w500/${media.poster_path}`
         : null
+    const backdrop = media.backdrop_path
+        ? `https://image.tmdb.org/t/p/original${media.backdrop_path}`
+        : poster
     const overview = media.overview || "No description available."
 
     return {
@@ -20,7 +23,8 @@ export function formatMedia(media) {
         type,
         voteAverage,
         mediaGenres,
-        imageUrl,
+        poster,
+        backdrop,
         overview
     }
 }

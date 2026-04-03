@@ -6,6 +6,7 @@ import { useWatchlistActions, WatchlistActions } from "@/features/watchlist"
 
 function MediaCard({
     media,
+    variant = "default",
     showRatingBadge = true,
     showWatchlistActions = true,
     showOverview = true,
@@ -20,7 +21,8 @@ function MediaCard({
         type,
         voteAverage,
         mediaGenres,
-        imageUrl,
+        poster,
+        backdrop,
         overview
     } = formatted
 
@@ -33,8 +35,19 @@ function MediaCard({
         handleToggleWatched
     } = useWatchlistActions(media)
 
+    const isHero = variant === "hero"
+    const isCarousel = variant === "carousel"
+
+    const containerClass = isHero
+        ? "relative rounded-xl overflow-hidden shadow-lg group w-72 md:w-96 aspect-[3/2] text-left"
+        : isCarousel
+            ? "relative rounded-xl overflow-hidden shadow-lg group w-40 md:w-44 aspect-[2/3] transition-transform"
+            : "relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3] transition-transform"
+
+    const image = isHero ? backdrop : poster
+
     return (
-        <article className="relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3] transition-transform">
+        <article className={containerClass}>
             {isClickable && (
                 <Link
                     to={to}
@@ -44,7 +57,7 @@ function MediaCard({
             )}
 
             <ImageWithFallback
-                src={imageUrl}
+                src={image}
                 alt={title}
                 className="w-full h-full object-cover"
             />

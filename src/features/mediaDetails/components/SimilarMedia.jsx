@@ -10,8 +10,8 @@ export default function SimilarMedia({ similar, type }) {
             
             <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
                 {similar.map((item) => (
-                    <div key={item.id} className="flex-none w-40 md:w-48 snap-start">
-                        <MediaCard media={item} />
+                    <div key={item.id} className="flex-none snap-start">
+                        <MediaCard media={item} variant="carousel" />
                     </div>
                 ))}
             </div>

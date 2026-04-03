@@ -31,3 +31,9 @@ export const discoverTVShows = (filters = {}, page = 1) => {
 
     return fetchFromAPI(ENDPOINTS.tv.discover, page, params)
 }
+
+export const getTrendingMovies = () =>
+    fetchFromAPI(ENDPOINTS.movies.trending)
+
+export const getTrendingTVShows = () =>
+    fetchFromAPI(ENDPOINTS.tv.trending)

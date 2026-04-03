@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react"
-import { getMovieDetails } from "@/features/mediaDetails/api/mediaDetailsApi"
-import { MediaHeader } from "@/features/mediaDetails"
-import { formatMediaDetails } from "@/features/mediaDetails/utils/formatMediaDetails"
+import { MediaHeader, formatMediaDetails } from "@/features/mediaDetails"
 import { CloseIcon } from "@/components/icons"
 import { LoadingState, Portal } from "@/components/ui"
+import { useMediaDetails } from "@/features/home"
 
-function RandomMovieModal({ movie, onClose }) {
-    const [details, setDetails] = useState(null)
+function RandomMovieModal({ media, type = "movie", onClose }) {
+    const { details, loading } = useMediaDetails(media, type)
 
-    useEffect(() => {
-        if (!movie?.id) return
-
-        async function load() {
-            const data = await getMovieDetails(movie.id)
-            setDetails(data)
-        }
-
-        load()
-    }, [movie])
-
-    if (!movie) return null
-    if (!details) return <LoadingState message="Loading..." />
+    if (!media) return null
 
     const { title, year, trailer } = formatMediaDetails(details)
 
@@ -37,13 +23,17 @@ function RandomMovieModal({ movie, onClose }) {
                     </button>
 
                     <div className="p-6 text-white text-start">
-                        <MediaHeader
-                            media={details}
-                            title={title}
-                            year={year}
-                            trailer={trailer}
-                            showBackButton={false}
-                        />
+                        {loading || !details ? (
+                            <LoadingState message="Loading..." />
+                        ) : (
+                            <MediaHeader
+                                media={details}
+                                title={title}
+                                year={year}
+                                trailer={trailer}
+                                showBackButton={false}
+                            />
+                        )}
                     </div>
                 </div>
             </div>

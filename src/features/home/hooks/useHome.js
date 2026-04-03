@@ -5,6 +5,8 @@ function useHome() {
     const [data, setData] = useState({
         popularMovies: [],
         popularTV: [],
+        trendingMovies: [],
+        trendingTV: [],
     })
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)

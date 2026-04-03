@@ -12,6 +12,7 @@ export default function Button({
     const variants = {
         primary: "bg-primary text-[#222028] hover:bg-primary/90",
         secondary: "bg-[#222028] text-white hover:text-primary",
+        tertiary: "bg-transparent text-white ring-2 ring-primary hover:bg-primary/5",
     }
 
     const sizes = {

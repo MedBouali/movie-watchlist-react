@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
     BookmarkIcon,
     BookmarkFilledIcon,
@@ -5,6 +6,7 @@ import {
     CheckFilledIcon
 } from "@/components/icons"
 import { Button } from "@/components/ui"
+import { AuthContext } from "@/app/providers";
 
 function WatchlistActions({
     isSaved,
@@ -13,6 +15,7 @@ function WatchlistActions({
     onToggleWatched,
     variant = "card"
 }) {
+    const { user } = useContext(AuthContext);
 
     if (variant === "header") {
         return (
@@ -25,7 +28,7 @@ function WatchlistActions({
                     {isSaved ? "Remove from Watchlist" : "Add to Watchlist"}
                 </Button>
 
-                {isSaved && (
+                {isSaved && user && (
                     <Button
                         onClick={onToggleWatched}
                         variant="secondary"
@@ -52,7 +55,7 @@ function WatchlistActions({
                 )}
             </button>
 
-            {isSaved && (
+            {isSaved && user && (
                 <button
                     onClick={onToggleWatched}
                     title={isWatched ? "Mark as unwatched" : "Mark as watched"}
