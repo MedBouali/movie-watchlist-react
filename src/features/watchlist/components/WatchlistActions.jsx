@@ -5,7 +5,7 @@ import {
     CheckIcon,
     CheckFilledIcon
 } from "@/components/icons"
-import { Button } from "@/components/ui"
+import { Button, CardButton } from "@/components/ui"
 import { AuthContext } from "@/app/providers";
 
 function WatchlistActions({
@@ -43,30 +43,28 @@ function WatchlistActions({
 
     return (
         <div className="absolute top-0 right-0 p-3 flex flex-col gap-2">
-            <button
+            <CardButton
                 onClick={onToggleWatchlist}
                 title={isSaved ? "Remove from watchlist" : "Add to watchlist"}
-                className="relative z-30 grid place-items-center bg-[#222028]/90 hover:bg-[#222028]/90 hover:text-primary min-w-9 min-h-8 max-w-9 max-h-8 rounded-lg text-sm transition"
             >
                 {isSaved ? (
                     <BookmarkFilledIcon className="w-[1rem] h-[1rem] fill-primary" />
                 ) : (
                     <BookmarkIcon className="w-[1rem] h-[1rem]" />
                 )}
-            </button>
+            </CardButton>
 
             {isSaved && user && (
-                <button
+                <CardButton
                     onClick={onToggleWatched}
                     title={isWatched ? "Mark as unwatched" : "Mark as watched"}
-                    className="relative z-30 grid place-items-center bg-[#222028]/90 hover:bg-[#222028]/90 hover:text-primary min-w-9 min-h-8 max-w-9 max-h-8 rounded-lg text-sm transition"
                 >
                     {isWatched ? (
                         <CheckFilledIcon className="w-[1.1rem] h-[1.1rem] fill-primary" />
                     ) : (
                         <CheckIcon className="w-[1.1rem] h-[1.1rem]" />
                     )}
-                </button>
+                </CardButton>
             )}
         </div>
     )
