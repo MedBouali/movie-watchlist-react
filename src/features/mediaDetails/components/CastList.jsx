@@ -1,13 +1,21 @@
-import { ImageWithFallback, Heading } from "@/components/ui"
+import { useRef } from "react"
+import { ImageWithFallback, Heading,ScrollButtons } from "@/components/ui"
 
 function CastList({ cast }) {
+    const scrollRef = useRef(null)
     if (!cast || cast.length === 0) return null
 
     return (
         <div className="mt-12">
-            <Heading text="Cast" />
+            <div className="flex items-center justify-between">
+                <Heading text="Cast" />
+                <ScrollButtons scrollRef={scrollRef} />
+            </div>
 
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide">
+            <div
+                ref={scrollRef}
+                className="flex gap-4 overflow-x-auto scrollbar-hide"
+            >
                 {cast.map((actor) => (
                     <div key={actor.id} className="flex-shrink-0 w-32 flex flex-col items-center">
                         <ImageWithFallback

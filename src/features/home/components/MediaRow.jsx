@@ -1,18 +1,28 @@
+import { useRef } from "react"
 import { MediaCard } from "@/components/cards"
-import { Heading } from "@/components/ui"
+import { Heading, ScrollButtons } from "@/components/ui"
 
 function MediaRow({ title, media = [] }) {
+    const scrollRef = useRef(null)
+
     return (
         <section className="mx-auto my-12">
-            <Heading text={title} />
+            <div className="flex items-center justify-between">
+                <Heading text={title} />
+                <ScrollButtons scrollRef={scrollRef} />
+            </div>
 
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide">
+            <div
+                ref={scrollRef}
+                className="flex gap-4 overflow-x-auto scrollbar-hide"
+            >
                 {media.map((item) => (
                     <div key={item.id} className="flex-none snap-start">
-                        <MediaCard media={item} variant="carousel" />
+                        <MediaCard media={item} variant="small" />
                     </div>
                 ))}
             </div>
+
         </section>
     )
 }

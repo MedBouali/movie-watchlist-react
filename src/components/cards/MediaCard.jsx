@@ -35,16 +35,16 @@ function MediaCard({
         handleToggleWatched
     } = useWatchlistActions(media)
 
-    const isHero = variant === "hero"
-    const isCarousel = variant === "carousel"
+    const isLarge = variant === "large"
+    const isSmall = variant === "small"
 
-    const containerClass = isHero
+    const containerClass = isLarge
         ? "relative rounded-xl overflow-hidden shadow-lg group w-72 md:w-96 aspect-[3/2] text-left"
-        : isCarousel
+        : isSmall
             ? "relative rounded-xl overflow-hidden shadow-lg group w-40 md:w-44 aspect-[2/3] transition-transform"
             : "relative rounded-xl overflow-hidden shadow-lg group aspect-[2/3] transition-transform"
 
-    const image = isHero ? backdrop : poster
+    const image = isLarge ? backdrop : poster
 
     return (
         <article className={containerClass}>
