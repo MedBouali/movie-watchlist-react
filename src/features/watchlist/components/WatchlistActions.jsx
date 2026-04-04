@@ -25,7 +25,7 @@ function WatchlistActions({
                     variant="secondary"
                     size="md"
                 >
-                    {isSaved ? "Remove from Watchlist" : "Add to Watchlist"}
+                    {isSaved && user ? "Remove from Watchlist" : "Add to Watchlist"}
                 </Button>
 
                 {isSaved && user && (
@@ -47,7 +47,7 @@ function WatchlistActions({
                 onClick={onToggleWatchlist}
                 title={isSaved ? "Remove from watchlist" : "Add to watchlist"}
             >
-                {isSaved ? (
+                {isSaved && user ? (
                     <BookmarkFilledIcon className="w-[1rem] h-[1rem] fill-primary" />
                 ) : (
                     <BookmarkIcon className="w-[1rem] h-[1rem]" />
