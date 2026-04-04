@@ -52,7 +52,7 @@ function MediaCard({
                 <Link
                     to={to}
                     aria-label={`View details for ${title}`}
-                    className="absolute inset-0 z-10"
+                    className="absolute inset-0 z-30"
                 />
             )}
 
