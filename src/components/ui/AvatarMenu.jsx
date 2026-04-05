@@ -27,16 +27,16 @@ export default function AvatarMenu({ email }) {
         <div ref={dropdownRef} className="relative inline-block text-left">
             <button
                 onClick={handleToggle}
-                className="w-8 h-8 rounded-lg ring-2 ring-primary bg-primary/5 flex items-center justify-center text-white text-[16px] hover:opacity-90 transition"
+                className="w-[30px] h-[30px] rounded-lg ring-2 ring-primary bg-primary/5 flex items-center justify-center text-white text-[14px] font-bold hover:opacity-90 transition"
             >
                 {initial}
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 py-2 mt-2 w-48 bg-[#222028] border border-[#222028] rounded-lg shadow-lg z-50">
+                <div className="absolute right-0 py-2 mt-2 w-48 bg-[#222028] border border-[#222028] rounded-xl shadow-2xl z-50">
                     <div className="flex flex-col items-center gap-3 mx-3 py-4 mb-2 text-sm text-gray-300 border-b border-gray-500">
                         <span
-                            className="w-9 h-9 rounded-lg ring-2 ring-primary bg-primary/5 flex items-center justify-center text-white text-[16px]"
+                            className="w-9 h-9 rounded-lg ring-2 ring-primary bg-primary/5 flex items-center justify-center text-white text-[16px] font-bold"
                         >
                             {initial}
                         </span>
@@ -47,7 +47,7 @@ export default function AvatarMenu({ email }) {
                             navigate("/watchlist")
                             handleClose()
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm hover:text-primary transition"
+                        className="block w-full text-left px-4 py-2 text-sm font-medium hover:text-primary transition"
                     >
                         My Watchlist
                     </button>
@@ -56,7 +56,7 @@ export default function AvatarMenu({ email }) {
                             logout()
                             handleClose()
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm hover:text-primary transition"
+                        className="block w-full text-left px-4 py-2 text-sm font-medium hover:text-primary transition"
                     >
                         Logout
                     </button>

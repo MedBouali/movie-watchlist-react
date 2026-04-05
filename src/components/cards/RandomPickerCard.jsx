@@ -12,7 +12,7 @@ function RandomPickerCard({
     onClose
 }) {
     return (
-        <div className="bg-[#1f1d26] rounded-md p-10 w-full text-center">
+        <div className="bg-[#1f1d26] rounded-xl p-10 w-full text-center">
             <h2 className="text-xl font-semibold mb-8">{title}</h2>
             <p className="text-sm text-gray-400 mb-6">{description}</p>
 
